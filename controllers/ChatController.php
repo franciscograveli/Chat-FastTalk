@@ -6,25 +6,26 @@ use App\Core\Controller;
 
 class ChatController extends Controller {
 
-    protected $sessionid = null;
+    protected $sessionId = null;
     
     public function __construct() {
         if(!isset($_SESSION)) session_start();
-        $this->sessionid =  null;
+        $this->sessionId =  null;
     }
     public function index() {
-        if($this->sessionid == null) {
+        if($this->sessionId == null) {
             $startChat = $this->startChat();
             if (property_exists($startChat, 'sessionId')) {
-                $this->sessionid = $startChat->sessionId;
-                $_SESSION['sessionid'] = $this->sessionid;
+                $this->sessionId = $startChat->sessionId;
+                $_SESSION['sessionId'] = $this->sessionId;
                 $this->css($startChat);
+                return $this->startMessages($startChat);
             } else {
                 $this->error($startChat->error);
             }
         }else{
             echo 'Recuperar chat';
-            echo $this->sessionid;
+            echo $this->sessionId;
         }
     }
 
@@ -61,6 +62,33 @@ class ChatController extends Controller {
 
     public function fetchMessages() {
         // Lógica para buscar mensagens
+    }
+
+    public function startMessages($obj) {
+        // Lógica para mostrar mensagens iniciais
+        $response = null;
+        if(isset($obj->messages) && is_array($obj->messages) && count($obj->messages) > 0) {
+            $response = array();
+            foreach($obj->messages as $message) {
+                if ($message->type == 'text') {
+                    foreach ($message->content->richText as $richText) {
+                        foreach ($richText->children as $children) {
+                            $messages[] = $children->text;
+                        }
+                    }
+                }
+            }
+            $response['messages'] = $messages;
+        }
+        if(isset($obj->input->type)){
+            $type = $obj->input->type;
+            if ($type == 'text input') {
+                $response['input'] = 'input';
+            }
+            
+        }
+
+        return $response;
     }
 
     public function css($obj) {

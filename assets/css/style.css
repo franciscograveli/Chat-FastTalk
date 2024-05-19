@@ -1,6 +1,8 @@
 .container {
     padding: 1rem 2rem;
     background-color: var(--general-background);
+    min-height: 90vh;
+    justify-content: start !important;
 }
 
 #chat {
@@ -13,14 +15,25 @@
 
 .message {
     width: 100%;
+    gap: .5rem;
+}
+
+.message-bot p {
+    align-self: flex-start !important;
+}
+
+.message-user p {
+    align-self: flex-end !important;
 }
 
 .message-bot {
     align-self: start;
+    align-items: end !important;
 }
 
 .message-user {
     align-self: end;
+    align-items: end !important;
 }
 
 .option {
@@ -65,4 +78,38 @@
     color: var(--inputs-color);
     padding: 1rem 2rem;
     border-radius: .5rem;
+}
+
+.input-text {
+    background-color: var(--inputs-background);
+    color: var(--inputs-color);
+    border: none;
+    padding: 1rem;
+    border-radius: .5rem;
+    flex: 1 1 auto;
+    min-width: 300px;
+}
+
+.input-text:active,
+.input-text:focus,
+.input-text:hover,
+.input-text:focus-within,
+.input-text:focus-visible {
+    border: none !important;
+}
+
+.btn-text {
+    background-color: var(--buttons-background);
+    color: var(--buttons-color);
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    transition: .5s;
+    font-weight: 600;
+    border: none;
+    margin: 0.5rem .5rem .5rem 0rem
+}
+
+.btn-text:hover {
+    transition: .5s;
+    cursor: pointer;
 }

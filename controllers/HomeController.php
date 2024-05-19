@@ -10,8 +10,8 @@ class HomeController extends Controller {
 
         $chatController = new Chat();
 
-        $chatController->index();
+        $startMessages = array( 'startMessages' =>$chatController->index());
 
-        $this->view('chat/index');
+        $this->view('chat/index', $startMessages);
     }
 }

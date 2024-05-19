@@ -16,7 +16,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: var(--font-color);
+    color: var(--inputs-color);
 }
 
 ::-webkit-scrollbar {
@@ -36,17 +36,28 @@
 
 body {
     background-color: var(--general-background);
+    min-width: 100vw;
+    min-height: 100vh;
 }
 
 footer {
     font-size: .75rem !important;
-    position: relative;
+    position: fixed;
+    left: 0;
     bottom: 0;
     width: 100%;
     height: 50px;
     background-color: var(--general-background);
     color: var(--inputs-placeholder-color);
     text-align: center;
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.p-1 {
+    padding: 1rem !important;
 }
 
 .d-flex {
