@@ -1,6 +1,10 @@
 <?php
+
 namespace App;
 
+if(!session_start()) {
+    session_start();
+}
 class App {
     protected $controller = 'HomeController';
     protected $method = 'index';
@@ -38,6 +42,6 @@ class App {
     }
 
     public function run() {
-        // Este método poderia ser usado para qualquer lógica de inicialização ou execução da aplicação
+        
     }
 }

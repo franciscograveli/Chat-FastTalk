@@ -17,6 +17,7 @@ class ComposerStaticInitbfaf2d7d99ab1dacbf01f36104df6484
         ),
         'A' => 
         array (
+            'App\\Core\\' => 9,
             'App\\Controllers\\' => 16,
             'App\\' => 4,
         ),
@@ -30,6 +31,10 @@ class ComposerStaticInitbfaf2d7d99ab1dacbf01f36104df6484
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'App\\Core\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/core',
         ),
         'App\\Controllers\\' => 
         array (

@@ -1,6 +1,14 @@
 <?php
-namespace App\Controllers;
+namespace App\Core;
 
 class Controller {
-    // Aqui você pode definir métodos e propriedades comuns a todos os controladores, se necessário
+    protected function view($view, $data = []) {
+        $viewFile = __DIR__ . "/../views/$view.php";
+        if (file_exists($viewFile)) {
+            extract($data);
+            require $viewFile;
+        } else {
+            die("Error: View '$view' not found.");
+        }
+    }
 }

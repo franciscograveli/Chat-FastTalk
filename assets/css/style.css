@@ -1,0 +1,68 @@
+.container {
+    padding: 1rem 2rem;
+    background-color: var(--general-background);
+}
+
+#chat {
+    position: relative;
+    gap: 1rem;
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem 2rem;
+}
+
+.message {
+    width: 100%;
+}
+
+.message-bot {
+    align-self: start;
+}
+
+.message-user {
+    align-self: end;
+}
+
+.option {
+    background-color: var(--buttons-background);
+    color: var(--buttons-color);
+    flex: 1 1 auto !important;
+    max-width: 200px;
+    margin: .5rem !important;
+    font-size: 100%;
+}
+
+.btn {
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    transition: .5s;
+    font-weight: 600;
+    border: none;
+}
+
+
+.btn:hover {
+    transition: .5s;
+    cursor: pointer;
+    transform: translate(1px, -3px);
+    filter: drop-shadow(0 0 0.1rem var(--buttons-background));
+}
+
+.avatar {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.message p {
+    background-color: var(--inputs-background);
+    color: var(--inputs-color);
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+}

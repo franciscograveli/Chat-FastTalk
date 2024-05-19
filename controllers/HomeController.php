@@ -1,8 +1,17 @@
 <?php
+
 namespace App\Controllers;
 
-class HomeController {
+use App\Core\Controller;
+use App\Controllers\ChatController as Chat;
+
+class HomeController extends Controller {
     public function index() {
-        echo "Home page";
+
+        $chatController = new Chat();
+
+        $chatController->index();
+
+        $this->view('chat/index');
     }
 }
