@@ -65,15 +65,7 @@ if(isset($_SESSION['user-layout'])) {
                 </div>';
             }
         ?>
-            <div class="d-flex d-center message-user">
-                <div class="message d-flex wrap d-around">
-                    <input type="button" value="Muriaé" class="btn option" onclick="answer(this.value, 'B')">
-                    <input type="button" value="Itamuri" class="btn option">
-                    <input type="button" value="Muriaé" class="btn option">
-                    <input type="button" value="Itamuri" class="btn option">
-                </div>
-
-            </div>
+          
            
 
             

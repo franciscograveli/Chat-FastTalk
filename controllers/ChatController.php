@@ -10,7 +10,6 @@ class ChatController extends Controller {
     
     public function __construct() {
         if(!isset($_SESSION)) session_start();
-        $this->sessionId =  null;
     }
     public function index() {
         if($this->sessionId == null) {
@@ -56,9 +55,54 @@ class ChatController extends Controller {
        return $responseData;
     }
     
-    public function sendMessage() {
-        // Lógica para enviar mensagem
+    public function sendMessage($msg) {
+        if (!isset($this->sessionId) && !isset($_SESSION['sessionId'])) {
+            $this->error('Session ID not found');
+            return; 
+        }
+    
+        include('./../config/config.php');
+    
+        $sessionId = isset($this->sessionId) ? $this->sessionId : $_SESSION['sessionId'];
+        $url = URL_FETCH_CHAT . $sessionId . '/continueChat';
+    
+        // error_log("Constructed URL: " . $url);
+    
+        $data = array(
+            'message' => $msg
+        );
+    
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); 
+        curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
+    
+        $response = curl_exec($ch);
+    
+        if (curl_errno($ch)) {
+            echo 'Curl error: ' . curl_error($ch);
+        } else {
+            $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            error_log("HTTP Status Code: " . $http_status);
+    
+            if ($http_status >= 400) {
+                echo 'HTTP error: ' . $http_status;
+            } else {
+                $responseData = (object) json_decode($response);
+    
+                return $responseData;
+            }
+        }
+    
+        // Close cURL session
+        curl_close($ch);
     }
+    
+    
+    
 
     public function fetchMessages() {
         // Lógica para buscar mensagens
